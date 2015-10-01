@@ -20,6 +20,7 @@
 		<br>
 		<br>
 		<br>
+		<br>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
@@ -94,11 +95,18 @@
 				$Email = $_POST['Email'];
 				$Password = $_POST['Password'];
 				$CPassword = $_POST['CPassword'];
+				$checkUserID = mysql_query("SELECT Email from Users WHERE Email = '$Email'");
 				mysql_connect('localhost','root','');
 				mysql_select_db('eshop');
 				if ($Password == $CPassword) {
-					$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '')";
-					$result = mysql_query($SQL) or die(mysql_error());
+					if ($checkUserID) {
+						$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '')";
+						$result = mysql_query($SQL) or die(mysql_error());
+					}else{
+						echo "This email already exists.";
+					}
+				}else{
+					echo "Error passwords dont match.";
 				}
 			}
 		?>
