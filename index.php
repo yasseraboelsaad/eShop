@@ -6,7 +6,7 @@
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	</head>
@@ -16,7 +16,7 @@
 				<tr>
 			    	<td><img src="shoppingcart.png" width = "50" height = "40"> eShop</td>
 			    	<td><a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">login</a></td>
-			    	<td><a href="signup.php">Sign up</a></td>
+			    	<td><a href="signup.php" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Sign up</a></td>
 			   	</tr>
 			</table>
 		</div>
