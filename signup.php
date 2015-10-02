@@ -36,12 +36,13 @@
 				$Email = $_POST['Email'];
 				$Password = $_POST['Password'];
 				$CPassword = $_POST['CPassword'];
+				$Avatar = $_POST['picture'];
 				mysql_connect('localhost','root','');
 				mysql_select_db('eshop');
 				$checkUserID = mysql_query("SELECT Email from Users WHERE Email = '$Email'");
 				if ($Password == $CPassword) {
 					if ($checkUserID) {
-						$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '')";
+						$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '$Avatar')";
 						$result = mysql_query($SQL) or die(mysql_error());
 					}else{
 						echo "This email already exists.";
