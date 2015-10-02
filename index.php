@@ -24,16 +24,34 @@
       <form method="post" action="demoform.asp">
         <div>
           <h3>Login information</h3>
-          <label for="usrnm" class="ui-hidden-accessible">Username:</label>
+          <label for="usrnm" class="ui-hidden-accessible">Email:</label>
           <input type="text" name="user" id="usrnm" placeholder="Username">
           <label for="pswd" class="ui-hidden-accessible">Password:</label>
           <input type="password" name="passw" id="pswd" placeholder="Password">
-          <label for="log">Keep me logged in</label>
-          <input type="checkbox" name="login" id="log" value="1" data-mini="true">
           <input type="submit" data-inline="true" value="Log in">
         </div>
       </form>
     </div>
   </div>
+  <?php
+			if (isset($_POST['submit'])) {
+				mysql_connect('localhost','root','');
+				mysql_select_db('eshop');
+				$Email = $_POST['user'];
+				$Password = $_POST['passw'];
+				$checkUserID = mysql_query("SELECT Email from Users WHERE Email = '$Email'");
+				$checkUserPW = mysql_query("SELECT Password from Users WHERE Email = '$Email'");
+				if($checkUserID){
+					if($checkUserPW){
+						echo "log in successful.";
+					}else{
+						echo "Password is incorrect.";
+					}
+
+				}else{
+					echo "Email does not exist, Please sign up!";
+				}
+			}
+		?>
 	</body>
 </html>
