@@ -5,13 +5,12 @@
 			Sign up
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	</head>
 	<body>
 		<div id="topbar">
 			<table style="width:100%">
 				<tr>
-			    	<td><img src="shoppingcart.png" width = "50" height = "40"> eShop</td>
+			    	<td><img src="images/shoppingcart.png" width = "50" height = "40"> eShop</td>
 			   	</tr>
 			</table>
 		</div>
@@ -28,7 +27,7 @@
 								<input type="password" value=" Confirm Password" name= "CPassword" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = ' Confirm Password';}" >
 								<input id="pic" type="file" name="picture" accept="image/*">	 
 								<div class="submit">
-									<input type="submit" onclick="myFunction()" value="Sign Me Up" name="submit" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">
+									<input type="submit" onclick="myFunction()" value="Sign Me Up" name="submit">
 								</div>
 		<?php
 			if (isset($_POST['submit'])) {

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION["User"] = '';
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,34 +9,30 @@
 			eShop
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script src="js/my_js.js"></script>
 	</head>
-	<body>
+	<body id="body" style="overflow:hidden;">
 		<div id="topbar">
 			<table style="width:100%">
 				<tr>
-			    	<td><img src="shoppingcart.png" width = "50" height = "40"> eShop</td>
-			    	<td><a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">login</a></td>
+			    	<td><img src="images/shoppingcart.png" width = "50" height = "40"> eShop</td>
+			    	<td><button id="popup" onclick="div_show()">Login</button></td>
 			    	<td><a href="signup.php" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Sign up</a></td>
 			   	</tr>
 			</table>
 		</div>
-		<div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;">
-      <form method="post" action="demoform.asp">
-        <div>
-          <h3>Login information</h3>
-          <label for="usrnm" class="ui-hidden-accessible">Email:</label>
-          <input type="text" name="user" id="usrnm" placeholder="Username">
-          <label for="pswd" class="ui-hidden-accessible">Password:</label>
-          <input type="password" name="passw" id="pswd" placeholder="Password">
-          <input type="submit" data-inline="true" value="Log in">
-        </div>
-      </form>
-    </div>
-  </div>
+		<div id="abc">
+			<div id="popupContact">
+				<form action="#" id="form" method="post" name="form">
+					<img id="close" src="images/3.png" onclick ="div_hide()">
+					<h2>Login</h2>
+					<hr>
+					<input id="name" name="user" placeholder="Email" type="text">
+					<input id="email" name="passw" placeholder="Password" type="password">
+					<input type="submit" onclick="myFunction()" value="Login" name="submit">
+				</form>
+			</div>
+		</div>
   <?php
 			if (isset($_POST['submit'])) {
 				mysql_connect('localhost','root','');
@@ -44,6 +44,7 @@
 				if($checkUserID){
 					if($checkUserPW){
 						echo "log in successful.";
+						$_SESSION["User"] = $Email;
 					}else{
 						echo "Password is incorrect.";
 					}
@@ -52,6 +53,12 @@
 					echo "Email does not exist, Please sign up!";
 				}
 			}
+		?>
+		<br>
+		<br>
+		<h1>HELLO</h1>
+		<?php
+			echo $_SESSION["User"];
 		?>
 	</body>
 </html>
