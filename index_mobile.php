@@ -65,7 +65,7 @@
                 <p class="lead"><img src="images/shoppingcart.png" width = "50" height = "40"> <br>eShop <br>
                 Your virtual shop.</p>
                 <div class="list-group">
-                    <a href="index_laptop.php" class="list-group-item">Laptops</a>
+                   <a href="index_laptop.php" class="list-group-item">Laptops</a>
                     <a href="index_mobile.php" class="list-group-item">Mobiles</a>
                     <a href="index_tablet.php" class="list-group-item">Tablets</a>
                 </div>
@@ -108,7 +108,7 @@
                     <?php
                         mysql_connect('localhost','root','');
                         mysql_select_db('eshop');
-                        $query = "SELECT * FROM Product";
+                        $query = "SELECT * FROM Product where Type = 'mobile'";
                         $result = mysql_query($query);
                         $num = mysql_num_rows($result);
 

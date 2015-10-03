@@ -108,7 +108,7 @@
                     <?php
                         mysql_connect('localhost','root','');
                         mysql_select_db('eshop');
-                        $query = "SELECT * FROM Product";
+                        $query = "SELECT * FROM Product where Type = 'Laptop'";
                         $result = mysql_query($query);
                         $num = mysql_num_rows($result);
 
