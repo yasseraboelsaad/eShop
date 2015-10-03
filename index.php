@@ -84,13 +84,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="http://www.laurenlewis406.com/wp-content/uploads/2015/06/nurture-leads-with-your-mobile-phone-800x300.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="http://www.rojaksite.com/wp-content/uploads/2011/03/Apple-iPad-2-5-800x300.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                    <img class="slide-image" src="http://1.bp.blogspot.com/-U2boBYcxb4c/VZe0jULmoBI/AAAAAAAAAvc/8NDwGFjYl-0/s1600/price%2Blist%2Bof%2BLaptops%2Bin%2Bslot%2Bnigeria-717553.jpg" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -116,7 +116,7 @@
                         {?>
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
-                                    <img src="http://placehold.it/320x150" alt="">
+                                    <img src=<?php echo $row['Image']; ?> alt="">
                                     <div class="caption">
                                         <h4 class="pull-right"><?php echo "$".$row['Price']; ?></h4>
                                         <h4><a href="#"><?php echo $row['Name']; ?></a>
