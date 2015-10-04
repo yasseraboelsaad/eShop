@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,12 +47,39 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <?php if(!isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href="#">Login</a>
+                        <a href="login.php">Login</a>
                     </li>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['user'])){ ?>
                     <li>
                         <a href="signup.php">Sign up</a>
                     </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "" >Orders</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a > 
+                            <?php echo $_SESSION['user']; ?>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "index.php" onclick="signout()">sign out</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "" >Cart</a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -122,11 +152,20 @@
                                         <h4><a href="#"><?php echo $row['Name']; ?></a>
                                         </h4>
                                         <p><?php echo $row['Description']; ?></p>
+                                        <button type="button">Buy me!</button>
                                     </div>
                                     <div class="ratings">
-                                        <p class="pull-right"><?php echo $row['Stock']; ?></p>
+                                        <p class="pull-right">
+                                        <?php 
+                                            if($row['Stock']>0){
+                                            echo "Yes."; 
+                                            }else{
+                                                echo "No.";
+                                            }
+                                        ?>
+                                        </p>
                                         <p>
-                                            <h4>Items left:</h4>
+                                            <h4>In stock:</h4>
                                         </p>
                                     </div>
                                 </div>
@@ -166,6 +205,14 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    function signout() {
+        <?php
+            session_unset();
+            session_destroy();
+        ?>
+    }
+    </script>
 
 </body>
 <style type="text/css">
