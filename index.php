@@ -73,7 +73,7 @@
                     
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "index.php" onclick="signout()">sign out</a>
+                        <a href= "signout.php" >sign out</a>
                     </li>
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
@@ -219,15 +219,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-    function signout() {
-        <?php
-            session_unset();
-            session_destroy();
-        ?>
-    }
-    </script>
-
+   
 </body>
 <style type="text/css">
    body { background: #DAA520 !important; }
