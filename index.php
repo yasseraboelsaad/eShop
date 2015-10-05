@@ -70,15 +70,14 @@
                         </a>
                     </li>
                     <?php } ?>
-                    
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "signout.php" >sign out</a>
+                        <a href= "cart.php" >Cart</a>
                     </li>
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "cart.php" >Cart</a>
+                        <a href= "signout.php" >sign out</a>
                     </li>
                     <?php } ?>
                 </ul>

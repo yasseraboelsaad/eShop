@@ -13,7 +13,7 @@
 		<div id="topbar">
 			<table style="width:100%">
 				<tr>
-			    	<td><img src="images/shoppingcart.png" width = "50" height = "40"> eShop</td>
+			    	<td><img src="images/shoppingcart.png" width = "50" height = "40"> <a href="index.php">eShop</a></td>
 			   	</tr>
 			</table>
 		</div>
@@ -47,7 +47,8 @@
 					if ($checkUserID) {
 						$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '$Avatar')";
 						$result = mysql_query($SQL) or die(mysql_error());
-						$_Session['user']= $Email;
+						$_SESSION["authenticated"] = true;
+						$_SESSION["user"] = $Email;
 						header('Location: index.php');
 					}else{
 						echo "This email already exists.";
