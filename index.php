@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['cart'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,12 +60,12 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "" >Orders</a>
+                        <a href= "orders.php" >Orders</a>
                     </li>
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a > 
+                        <a href="profile.php"> 
                             <?php echo $_SESSION['user']; ?>
                         </a>
                     </li>
@@ -77,7 +78,7 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "" >Cart</a>
+                        <a href= "cart.php" >Cart</a>
                     </li>
                     <?php } ?>
                 </ul>
@@ -140,7 +141,6 @@
                         mysql_select_db('eshop');
                         $query = "SELECT * FROM Product";
                         $result = mysql_query($query);
-                        $num = mysql_num_rows($result);
 
                         while($row = mysql_fetch_assoc($result))
                         {?>
@@ -152,12 +152,17 @@
                                         <h4><a href="#"><?php echo $row['Name']; ?></a>
                                         </h4>
                                         <p><?php echo $row['Description']; ?></p>
-                                        <button type="button">Buy me!</button>
+                                        <form method="post" action="index.php">
+                                        <input type='submit' name=<?php echo $row['id'];?> value= "Buy me!">
+                                        </form>
                                     </div>
                                     <div class="ratings">
                                         <p class="pull-right">
                                         <?php 
                                             if($row['Stock']>0){
+                                                if(isset($_SESSION['cart'][0])){
+                                                echo $_SESSION['cart'][0];
+                                                }
                                             echo "Yes."; 
                                             }else{
                                                 echo "No.";
@@ -199,7 +204,16 @@
 
     </div>
     <!-- /.container -->
+    <?php
+        $query = "SELECT id FROM Product";
+        $result = mysql_query($query);
 
+        while($row = mysql_fetch_assoc($result)){
+            if (isset($_POST[$row['id']])) {
+                array_push($_SESSION['cart'],$row['id']);
+            }
+        }
+    ?>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

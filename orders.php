@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['user']="karim@gmail.com";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,10 +49,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Login</a>
+                        <a href="profile.php"> 
+                            <?php echo $_SESSION['user']; ?>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href= "index.php" onclick="signout()">sign out</a>
                     </li>
                     <li>
-                        <a href="signup.php">Sign up</a>
+                        <a href= "cart.php" >Cart</a>
                     </li>
                 </ul>
             </div>
@@ -63,83 +70,39 @@
     <div class="container">
 
         <div class="row">
-
             <div class="col-md-3">
-                <p class="lead"><img src="images/shoppingcart.png" width = "50" height = "40"> <br>eShop <br>
-                Your virtual shop.</p>
                 <div class="list-group">
-                    <a href="index_laptop.php" class="list-group-item">Laptops</a>
-                    <a href="index_mobile.php" class="list-group-item">Mobiles</a>
-                    <a href="index_tablet.php" class="list-group-item">Tablets</a>
+
                 </div>
             </div>
-
             <div class="col-md-9">
 
-                <div class="row carousel-holder">
-
-                    <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <a href="index_mobile.php"><img class="slide-image" src="http://www.laurenlewis406.com/wp-content/uploads/2015/06/nurture-leads-with-your-mobile-phone-800x300.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href="index_tablet.php"><img class="slide-image" src="http://www.rojaksite.com/wp-content/uploads/2011/03/Apple-iPad-2-5-800x300.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href="index_laptop.php"><img class="slide-image" src="http://1.bp.blogspot.com/-U2boBYcxb4c/VZe0jULmoBI/AAAAAAAAAvc/8NDwGFjYl-0/s1600/price%2Blist%2Bof%2BLaptops%2Bin%2Bslot%2Bnigeria-717553.jpg" alt=""></a>
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
+                
                 <div class="row">
-                    <?php
+                <?php
                         mysql_connect('localhost','root','');
                         mysql_select_db('eshop');
-                        $query = "SELECT * FROM Product where Type = 'Laptop'";
+                        $query = "SELECT * FROM Orders where User ='karim@gmail.com'";
                         $result = mysql_query($query);
-                        $num = mysql_num_rows($result);
-
                         while($row = mysql_fetch_assoc($result))
                         {?>
+                            <?php
+                                $sql = "SELECT * FROM Product where id = {$row['Product']}";
+                                $prod = mysql_query($sql);
+                            ?>
                             <div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
-                                    <img src=<?php echo $row['Image']; ?> alt="">
                                     <div class="caption">
-                                        <h4 class="pull-right"><?php echo "$".$row['Price']; ?></h4>
-                                        <h4><a href="#"><?php echo $row['Name']; ?></a>
+                                        <h4 ><?php echo $prod['Name']; ?></h4>
+                                        <h4><a href="#"><?php echo $prod['Price']; ?></a>
                                         </h4>
-                                        <p><?php echo $row['Description']; ?></p>
-                                    </div>
-                                    <div class="ratings">
-                                        <p class="pull-right"><?php echo $row['Stock']; ?></p>
-                                        <p>
-                                            <h4>Items left:</h4>
-                                        </p>
+                                        <p><?php echo $row['Amount']; ?></p>
                                     </div>
                                 </div>
                             </div>
                         <?php
                         }
                         ?>
-                    
-
-
                 </div>
 
             </div>
@@ -163,12 +126,20 @@
 
     </div>
     <!-- /.container -->
-
+    
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script>
+    function signout() {
+        <?php
+            session_unset();
+            session_destroy();
+        ?>
+    }
+    </script>
 
 </body>
 <style type="text/css">
