@@ -151,25 +151,19 @@
                                         <h4><a href="#"><?php echo $row['Name']; ?></a>
                                         </h4>
                                         <p><?php echo $row['Description']; ?></p>
+                                        <?php 
+                                            if($row['Stock']>0){?>
                                         <form method="post" action="index.php">
                                         <input type='submit' name=<?php echo $row['id'];?> value= "Buy me!">
                                         </form>
+                                        <?php }else{ ?>
+                                        <p>Out of stock.</p>
+                                        <?php }?>
                                     </div>
                                     <div class="ratings">
                                         <p class="pull-right">
-                                        <?php 
-                                            if($row['Stock']>0){
-                                                if(isset($_SESSION['cart'][0])){
-                                                echo $_SESSION['cart'][0];
-                                                }
-                                            echo "Yes."; 
-                                            }else{
-                                                echo "No.";
-                                            }
-                                        ?>
                                         </p>
                                         <p>
-                                            <h4>In stock:</h4>
                                         </p>
                                     </div>
                                 </div>
