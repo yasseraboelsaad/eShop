@@ -164,6 +164,12 @@
                                         <p class="pull-right">
                                         </p>
                                         <p>
+                                        <?php
+                                            if (isset($_POST[$row['id']])) {
+                                                array_push($_SESSION['cart'],$_POST[$row['id']]);
+                                                echo "Added to cart!";
+                                            }
+                                        ?>
                                         </p>
                                     </div>
                                 </div>
@@ -197,16 +203,6 @@
 
     </div>
     <!-- /.container -->
-    <?php
-        $query = "SELECT id FROM Product";
-        $result = mysql_query($query);
-
-        while($row = mysql_fetch_assoc($result)){
-            if (isset($_POST[$row['id']])) {
-                array_push($_SESSION['cart'],$row['id']);
-            }
-        }
-    ?>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
