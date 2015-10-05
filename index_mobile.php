@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['cart'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,12 +48,39 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <?php if(!isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href="#">Login</a>
+                        <a href="login.php">Login</a>
                     </li>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['user'])){ ?>
                     <li>
                         <a href="signup.php">Sign up</a>
                     </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "orders.php" >Orders</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href="profile.php"> 
+                            <?php echo $_SESSION['user']; ?>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "signout.php" >sign out</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "cart.php" >Cart</a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -68,7 +96,7 @@
                 <p class="lead"><img src="images/shoppingcart.png" width = "50" height = "40"> <br>eShop <br>
                 Your virtual shop.</p>
                 <div class="list-group">
-                   <a href="index_laptop.php" class="list-group-item">Laptops</a>
+                    <a href="index_laptop.php" class="list-group-item">Laptops</a>
                     <a href="index_mobile.php" class="list-group-item">Mobiles</a>
                     <a href="index_tablet.php" class="list-group-item">Tablets</a>
                 </div>
@@ -113,7 +141,6 @@
                         mysql_select_db('eshop');
                         $query = "SELECT * FROM Product where Type = 'mobile'";
                         $result = mysql_query($query);
-                        $num = mysql_num_rows($result);
 
                         while($row = mysql_fetch_assoc($result))
                         {?>
@@ -125,11 +152,25 @@
                                         <h4><a href="#"><?php echo $row['Name']; ?></a>
                                         </h4>
                                         <p><?php echo $row['Description']; ?></p>
+                                        <form method="post" action="index.php">
+                                        <input type='submit' name=<?php echo $row['id'];?> value= "Buy me!">
+                                        </form>
                                     </div>
                                     <div class="ratings">
-                                        <p class="pull-right"><?php echo $row['Stock']; ?></p>
+                                        <p class="pull-right">
+                                        <?php 
+                                            if($row['Stock']>0){
+                                                if(isset($_SESSION['cart'][0])){
+                                                echo $_SESSION['cart'][0];
+                                                }
+                                            echo "Yes."; 
+                                            }else{
+                                                echo "No.";
+                                            }
+                                        ?>
+                                        </p>
                                         <p>
-                                            <h4>Items left:</h4>
+                                            <h4>In stock:</h4>
                                         </p>
                                     </div>
                                 </div>
@@ -163,13 +204,22 @@
 
     </div>
     <!-- /.container -->
+    <?php
+        $query = "SELECT id FROM Product";
+        $result = mysql_query($query);
 
+        while($row = mysql_fetch_assoc($result)){
+            if (isset($_POST[$row['id']])) {
+                array_push($_SESSION['cart'],$row['id']);
+            }
+        }
+    ?>
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+   
 </body>
 <style type="text/css">
    body { background: #DAA520 !important; }

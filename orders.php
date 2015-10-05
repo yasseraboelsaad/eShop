@@ -1,6 +1,5 @@
 <?php
     session_start();
-    $_SESSION['user']="karim@gmail.com";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +54,7 @@
                     </li>
 
                     <li>
-                        <a href= "index.php" onclick="signout()">sign out</a>
+                        <a href= "signout.php">sign out</a>
                     </li>
                     <li>
                         <a href= "cart.php" >Cart</a>
@@ -132,14 +131,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-    function signout() {
-        <?php
-            session_unset();
-            session_destroy();
-        ?>
-    }
-    </script>
 
 </body>
 <style type="text/css">

@@ -59,7 +59,7 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "" >Orders</a>
+                        <a href= "orders.php" >Orders</a>
                     </li>
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
@@ -72,12 +72,7 @@
                     
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "index.php" onclick="signout()">sign out</a>
-                    </li>
-                    <?php } ?>
-                    <?php if(isset($_SESSION['user'])){ ?>
-                    <li>
-                        <a href= "" >Cart</a>
+                        <a href= "signout.php">sign out</a>
                     </li>
                     <?php } ?>
                 </ul>
@@ -134,14 +129,6 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <script>
-    function signout() {
-        <?php
-            session_unset();
-            session_destroy();
-        ?>
-    }
-    </script>
 
 </body>
 <style type="text/css">
