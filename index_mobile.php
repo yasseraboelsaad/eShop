@@ -139,7 +139,7 @@
                     <?php
                         mysql_connect('localhost','root','');
                         mysql_select_db('eshop');
-                        $query = "SELECT * FROM Product";
+                        $query = "SELECT * FROM Product where Type = 'mobile'";
                         $result = mysql_query($query);
 
                         while($row = mysql_fetch_assoc($result))
