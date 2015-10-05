@@ -47,6 +47,8 @@
 					if ($checkUserID) {
 						$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '$Avatar')";
 						$result = mysql_query($SQL) or die(mysql_error());
+						$_Session['user']= $Email;
+						header('Location: index.php');
 					}else{
 						echo "This email already exists.";
 					}
