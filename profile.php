@@ -62,25 +62,73 @@
     <!-- Page Content -->
     <div class="container">
 
-        <div class="row">
-            <?php 
-                    mysql_connect('localhost','root','');
-                    mysql_select_db('eshop');
-                    $checkUserID = mysql_query("SELECT * from Users WHERE Email = 'mudda@gmail.com'");
-                    $result = mysql_fetch_row($checkUserID);
-                ?>
-            <div class="col-md-3">
-                <p class="lead"><img src=<?php echo $result[4];?> width = "50" height = "40"></p>
-                <button>Change avatar</button>
-                <div class="list-group">
-                    <br>
-                    <form method="post">
-                    <a class="list-group-item">First Name: <?php echo $result[0];?><input type="text" name="fname"><button onclick="fname()">Change</button></a>
-                    <a class="list-group-item">Last Name: <?php echo $result[1];?><input type="text" name="lname"><button>Change</button></a>
-                    <a class="list-group-item">Email: <?php echo $result[2];?><input type="text" name="email"><button>Change</button></a>
-                    </form>
-                </div>
+       <div class="container">
+    <h1>Edit Profile</h1>
+    <hr>
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+        <div class="text-center">
+          <img src="images/avatar.png" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+          
+          <input type="file" class="form-control">
+        </div>
+      </div>
+      
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+        <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a> 
+          <i class="fa fa-coffee"></i>
+          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div>
+        <h3>Personal info</h3>
+        
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Jane">
             </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="Bishop">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" value="janesemail@gmail.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Confirm password:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="password" value="11111122333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="button" class="btn btn-primary" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Cancel">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>
             <?php
                 $fname=$_POST['fname'];
                 $lname=$_POST['lname'];
