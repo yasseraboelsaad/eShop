@@ -64,10 +64,16 @@
                         <a href= "orders.php" >Orders</a>
                     </li>
                     <?php } ?>
-                    <?php if(isset($_SESSION['user'])){ ?>
+                    <?php 
+                        if(isset($_SESSION['user'])){
+                            mysql_connect('localhost','root','');
+                            mysql_select_db('eshop');
+                            $sql = mysql_query("SELECT * from Users WHERE Email ='{$_SESSION['user']}'");
+                            $row=mysql_fetch_array($sql)
+                     ?>
                     <li>
                         <a href="profile.php"> 
-                            <?php echo $_SESSION['user']; ?>
+                            <?php echo $row['Fname']." ".$row['Lname']; ?>
                         </a>
                     </li>
                     <?php } ?>
