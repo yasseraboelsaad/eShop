@@ -170,10 +170,10 @@
             }
      ?>
     <!-- /.container -->
+    <hr>
 
     <div class="container">
 
-        <hr>
 
         <!-- Footer -->
         <footer>
