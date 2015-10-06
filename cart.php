@@ -108,7 +108,7 @@
         <h1>Order confirmation</h1>
         <p>You are about to buy:</p>
         <?php
-            if (isset($_SESSION['cart'])) {
+            if (!empty($_SESSION['cart'])) {
                 $amount=current($_SESSION['amount']);
                 $total=0;
                 foreach($_SESSION['cart'] as $id) {
@@ -122,48 +122,49 @@
                  </form>
 
         <?php 
-            $amount=next($_SESSION['amount']); }
-            reset($_SESSION['amount']);
-            echo "Your total cost is $".$total; 
+                $amount=next($_SESSION['amount']); }
+                reset($_SESSION['amount']);
+                echo "Your total cost is $".$total; 
         ?>
         <br>
         <button class="button" value="Purchase" name="purchase" type="submit" >Purchase</button>
-        <?php }else{
-            echo "No items in Cart!";
-            } ?>
+        
         
     </div>
     </form>
     <?php
-        if (isset($_POST[$row['id']])) {
-             $key = array_search($row['id'], $_SESSION['cart']);
-             unset($_SESSION['cart'][$key]);
-             unset($_SESSION['amount'][$key]);
-         } 
-        if (isset($_POST['purchase'])) {
-            $sql=mysql_query("SELECT MAX(Number) FROM Orders");
-            $order= mysql_fetch_assoc($sql);
-            $orderno= $order['MAX(Number)']+1;
-            $amount=current($_SESSION['amount']);
-            foreach($_SESSION['cart'] as $id) {
-            $result=mysql_query("INSERT INTO Orders (User, Product, Amount, Number) VALUES ('{$_SESSION['user']}', $id, $amount, '$orderno')");
-            
-            $qwe=mysql_query("SELECT Stock FROM Product WHERE id='$id'");
-            $order= mysql_fetch_assoc($qwe);
-            $stock= $order['Stock']-$amount;
-            $qwe=mysql_query("UPDATE Product SET Stock='$stock' WHERE id=$id");
-            unset($_SESSION['cart']);
-            unset($_SESSION['amount']);
-            $_SESSION['cart']= array();
-            $_SESSION['amount']= array();
-            echo "<script>
-                    alert('Purchase successful.');
-                    window.location.href='index.php';
-                </script>";
-            }
-            $amount=next($_SESSION['amount']);
+            if (isset($_POST[$row['id']])) {
+                 $key = array_search($row['id'], $_SESSION['cart']);
+                 unset($_SESSION['cart'][$key]);
+                 unset($_SESSION['amount'][$key]);
+             } 
+            if (isset($_POST['purchase'])) {
+                $sql=mysql_query("SELECT MAX(Number) FROM Orders");
+                $order= mysql_fetch_assoc($sql);
+                $orderno= $order['MAX(Number)']+1;
+                $amount=current($_SESSION['amount']);
+                foreach($_SESSION['cart'] as $id) {
+                $result=mysql_query("INSERT INTO Orders (User, Product, Amount, Number) VALUES ('{$_SESSION['user']}', $id, $amount, '$orderno')");
+                
+                $qwe=mysql_query("SELECT Stock FROM Product WHERE id='$id'");
+                $order= mysql_fetch_assoc($qwe);
+                $stock= $order['Stock']-$amount;
+                $qwe=mysql_query("UPDATE Product SET Stock='$stock' WHERE id=$id");
+                unset($_SESSION['cart']);
+                unset($_SESSION['amount']);
+                $_SESSION['cart']= array();
+                $_SESSION['amount']= array();
+                echo "<script>
+                        alert('Purchase successful.');
+                        window.location.href='index.php';
+                    </script>";
+                }
+                $amount=next($_SESSION['amount']);
 
-        }
+            }
+        }else{
+            echo "No items in Cart!";
+            }
      ?>
     <!-- /.container -->
 
