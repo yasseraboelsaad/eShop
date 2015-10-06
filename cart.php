@@ -118,12 +118,11 @@
             ?>
                 <p><img class="item" title="Image of Cover" src= <?php echo $row['Image']; ?> /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
                 <form method="post">
-                        <div class="button_remove">
+                        <div class="button_remove" onclick=<>
                         Remove Item
                         </div>
+                 </form>
 
-
-                    
         <?php 
             $amount=next($_SESSION['amount']); }
             reset($_SESSION['amount']);
