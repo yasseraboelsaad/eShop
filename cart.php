@@ -33,7 +33,78 @@
 <body>
 
     <!-- Navigation -->
-     <div class="checkout">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="images/shoppingcart.png" width = "50" height = "40"> <a class="navbar-brand" href="index.php">eShop</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <?php if(!isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href="login.php">Login</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href="signup.php">Sign up</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "orders.php" >Orders</a>
+                    </li>
+                    <?php } ?>
+                    <?php 
+                        if(isset($_SESSION['user'])){
+                            mysql_connect('localhost','root','');
+                            mysql_select_db('eshop');
+                            $sql = mysql_query("SELECT * from Users WHERE Email ='{$_SESSION['user']}'");
+                            $row=mysql_fetch_array($sql)
+                     ?>
+                    <li>
+                        <a href="profile.php"> 
+                            <?php echo $row['Fname']." ".$row['Lname']; ?>
+                        </a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "signout.php" >sign out</a>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-9">
+
+                
+                <div class="row">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="checkout">
   <h1>Checkout</h1>
   <p>You are about to buy:</p>
   <p><img class="item" title="Image of Cover" src="http://i.imgur.com/bqvpFUM.jpg" />My Neighbour Totoro for £22.99</p>

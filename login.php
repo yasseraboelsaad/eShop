@@ -30,6 +30,7 @@
 								<div class="submit">
 									<input type="submit" onclick="myFunction()" value="Login" name="submit">
 								</div>
+							</form>
 		<?php
 			if (isset($_POST['submit'])) {
 				$Email = $_POST['Email'];
@@ -40,7 +41,7 @@
 				$result = mysql_fetch_row($checkUserID);
 					if ($result[0] == $Email) {
 						echo "Login successful";
-						$_SESSION["authenticated"] = true;
+						$_SESSION['authenticated'] = true;
 						$_SESSION["user"] = $Email;
 						echo "<script> window.location.assign('index.php'); </script>";
 

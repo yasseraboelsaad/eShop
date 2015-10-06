@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['cart'] = array();
+    $_SESSION['amount'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,10 +64,16 @@
                         <a href= "orders.php" >Orders</a>
                     </li>
                     <?php } ?>
-                    <?php if(isset($_SESSION['user'])){ ?>
+                    <?php 
+                        if(isset($_SESSION['user'])){
+                            mysql_connect('localhost','root','');
+                            mysql_select_db('eshop');
+                            $sql = mysql_query("SELECT * from Users WHERE Email ='{$_SESSION['user']}'");
+                            $row=mysql_fetch_array($sql)
+                     ?>
                     <li>
                         <a href="profile.php"> 
-                            <?php echo $_SESSION['user']; ?>
+                            <?php echo $row['Fname']." ".$row['Lname']; ?>
                         </a>
                     </li>
                     <?php } ?>
@@ -155,6 +162,8 @@
                                             if($row['Stock']>0){?>
                                         <form method="post" action="index.php">
                                         <input type='submit' name=<?php echo $row['id'];?> value= "Buy me!">
+                                        <br>
+                                        <a>Number:  </a><input type="number" step="1" value="1" name=<?php echo $row['id']."no";?>>
                                         </form>
                                         <?php }else{ ?>
                                         <p>Out of stock.</p>
@@ -166,8 +175,13 @@
                                         <p>
                                         <?php
                                             if (isset($_POST[$row['id']])) {
-                                                array_push($_SESSION['cart'],$_POST[$row['id']]);
-                                                echo "Added to cart!";
+                                                if (isset($_SESSION['authenticated'])) {
+                                                    array_push($_SESSION['amount'],$_POST[$row['id']."no"]);
+                                                    array_push($_SESSION['cart'],$_POST[$row['id']]);
+                                                    echo "Added to cart!";
+                                                }else{
+                                                    echo "<script type='text/javascript'>alert('Please sign up or log');</script>";
+                                                }
                                             }
                                         ?>
                                         </p>

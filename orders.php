@@ -47,18 +47,39 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <?php if(!isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href="login.php">Login</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href="signup.php">Sign up</a>
+                    </li>
+                    <?php } ?>
+                    <?php 
+                        if(isset($_SESSION['user'])){
+                            mysql_connect('localhost','root','');
+                            mysql_select_db('eshop');
+                            $sql = mysql_query("SELECT * from Users WHERE Email ='{$_SESSION['user']}'");
+                            $row=mysql_fetch_array($sql)
+                     ?>
                     <li>
                         <a href="profile.php"> 
-                            <?php echo $_SESSION['user']; ?>
+                            <?php echo $row['Fname']." ".$row['Lname']; ?>
                         </a>
                     </li>
-
-                    <li>
-                        <a href= "signout.php">sign out</a>
-                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
                     <li>
                         <a href= "cart.php" >Cart</a>
                     </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "signout.php" >sign out</a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
