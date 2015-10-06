@@ -105,14 +105,15 @@
 
     </div>
     <div class="checkout">
-        <h1>Checkout</h1>
+        <h1>Order confirmation</h1>
         <p>You are about to buy:</p>
         <?php
             $amount=current($_SESSION['amount']);
+            $total=0;
             foreach($_SESSION['cart'] as $id) {
             $sql = mysql_query("SELECT * from Product WHERE id ='$id'");
             $row = mysql_fetch_assoc($sql);
-            
+            $total+= ($row['Price']*$amount);
             ?>
                 <p><img class="item" title="Image of Cover" src= $row['Image'] /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
                 <form method="post">
@@ -122,10 +123,11 @@
             if (isset($_POST['remove'])) {
                 echo "asd";
             }
-            $amount=next($_SESSION['amount']); } 
+            $amount=next($_SESSION['amount']); }
+            echo "Your total cost is $".$total; 
         ?>
         <div class="button">
-            Continue
+            Purchase
         </div>
     </div>
     <!-- /.container -->
