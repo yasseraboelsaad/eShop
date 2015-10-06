@@ -61,7 +61,7 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "orders.php" >Orders</a>
+                        <a href= "cart.php" >Cart</a>
                     </li>
                     <?php } ?>
                     <?php 

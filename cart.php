@@ -108,12 +108,13 @@
         <h1>Order confirmation</h1>
         <p>You are about to buy:</p>
         <?php
-            $amount=current($_SESSION['amount']);
-            $total=0;
-            foreach($_SESSION['cart'] as $id) {
-            $sql = mysql_query("SELECT * from Product WHERE id ='$id'");
-            $row = mysql_fetch_assoc($sql);
-            $total+= ($row['Price']*$amount);
+            if (isset($_SESSION['cart'])) {
+                $amount=current($_SESSION['amount']);
+                $total=0;
+                foreach($_SESSION['cart'] as $id) {
+                $sql = mysql_query("SELECT * from Product WHERE id ='$id'");
+                $row = mysql_fetch_assoc($sql);
+                $total+= ($row['Price']*$amount);
             ?>
                 <p><img class="item" title="Image of Cover" src= <?php echo $row['Image']; ?> /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
                 <form method="post">
@@ -122,15 +123,46 @@
                         </div>
 
 
-                    </form>
+                    
         <?php 
             $amount=next($_SESSION['amount']); }
+            reset($_SESSION['amount']);
             echo "Your total cost is $".$total; 
         ?>
-        <div class="button">
-            Purchase
-        </div>
+        <br>
+        <button class="button" value="Purchase" name="purchase" type="submit" >Purchase</button>
+        <?php }else{
+            echo "No items in Cart!";
+            } ?>
+        
     </div>
+    </form>
+    <?php 
+        if (isset($_POST['purchase'])) {
+            $sql=mysql_query("SELECT MAX(Number) FROM Orders");
+            $order= mysql_fetch_assoc($sql);
+            $orderno= $order['MAX(Number)']+1;
+            $amount=current($_SESSION['amount']);
+            foreach($_SESSION['cart'] as $id) {
+            $result=mysql_query("INSERT INTO Orders (User, Product, Amount, Number) VALUES ('{$_SESSION['user']}', $id, $amount, '$orderno')");
+            
+            $qwe=mysql_query("SELECT Stock FROM Product WHERE id='$id'");
+            $order= mysql_fetch_assoc($qwe);
+            $stock= $order['Stock']-$amount;
+            $qwe=mysql_query("UPDATE Product SET Stock='$stock' WHERE id=$id");
+            unset($_SESSION['cart']);
+            unset($_SESSION['amount']);
+            $_SESSION['cart']= array();
+            $_SESSION['amount']= array();
+            echo "<script>
+                    alert('Purchase successful.');
+                    window.location.href='index.php';
+                </script>";
+            }
+            $amount=next($_SESSION['amount']);
+
+        }
+     ?>
     <!-- /.container -->
 
     <div class="container">
