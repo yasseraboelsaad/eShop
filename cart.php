@@ -117,12 +117,13 @@
             ?>
                 <p><img class="item" title="Image of Cover" src= <?php echo $row['Image']; ?> /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
                 <form method="post">
-                <input name="remove" type="button" id="remove" value="Remove item" />
-                </form>
+                        <div class="button_remove">
+                        Remove Item
+                        </div>
+
+
+                    </form>
         <?php 
-            if (isset($_POST['remove'])) {
-                echo "asd";
-            }
             $amount=next($_SESSION['amount']); }
             echo "Your total cost is $".$total; 
         ?>
