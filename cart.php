@@ -128,7 +128,9 @@
         ?>
         <br>
         <button class="button" value="Purchase" name="purchase" type="submit" >Purchase</button>
-        
+        <form action="index.php">
+            <button class="button" name="purchase" >Continue shopping</button>
+        </form>
         
     </div>
     </form>
