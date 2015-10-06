@@ -8,6 +8,8 @@
 			Sign up
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet_auth.css">
+		<script language="javascript" type="text/javascript" src="js/cart.js"></script>
+
 	</head>
 	<body>
 		<div id="topbar">
