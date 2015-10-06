@@ -115,9 +115,11 @@
             $asd = mysql_fetch_assoc($result);
             if ($lastorder==$row['Number']) {
             ?>
+                <img src=<?php echo $asd['Image'];?>>
                 <p> Product name: <?php echo $asd['Name']; ?> Price: <?php echo $asd['Name']; ?> Amount: <?php echo $row['Amount']; ?></p>
             <?php }else{ ?>
                 <p>Order number: <?php echo $row['Number']; ?></p>
+                <img src=<?php echo $asd['Image'];?>>
                 <p> Product name: <?php echo $asd['Name']; ?> Price: <?php echo $asd['Name']; ?> Amount: <?php echo $row['Amount']; ?></p>
             <?php } ?>
         <?php 
