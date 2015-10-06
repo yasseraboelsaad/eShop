@@ -115,7 +115,7 @@
             $row = mysql_fetch_assoc($sql);
             $total+= ($row['Price']*$amount);
             ?>
-                <p><img class="item" title="Image of Cover" src= $row['Image'] /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
+                <p><img class="item" title="Image of Cover" src= <?php echo $row['Image']; ?> /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
                 <form method="post">
                 <input name="remove" type="button" id="remove" value="Remove item" />
                 </form>
