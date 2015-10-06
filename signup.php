@@ -55,6 +55,8 @@
 							$result = mysql_query($SQL) or die(mysql_error());
 							$_SESSION["authenticated"] = true;
 							$_SESSION["user"] = $Email;
+							$_SESSION['cart']= array();
+							$_SESSION['amount']= array();
 							header('Location: index.php');
 						}else{
 							echo "This email already exists.";

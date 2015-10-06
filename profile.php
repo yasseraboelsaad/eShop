@@ -164,6 +164,9 @@
                   if ($password==$cpassword) {
                     $sql = mysql_query("UPDATE Users SET Fname = '{$_POST['fname']}', Lname = '{$_POST['lname']}', Email='{$_POST['email']}', Password='{$_POST['Password']}',Avatar='{$_POST['Avatar']}' WHERE Email='{$_SESSION['user']}'");
                     $_SESSION['user']=$_POST['email'];
+                    echo "<script>
+                        window.location.href='profile.php';
+                    </script>";
                   }else{
                     echo "Passwords dont match";
                   }
