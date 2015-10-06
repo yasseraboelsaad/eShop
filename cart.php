@@ -107,6 +107,7 @@
 
     </div>
     <div class="checkout">
+
         <h1>Order confirmation</h1>
         <p>You are about to buy:</p>
         <?php
@@ -129,13 +130,15 @@
                 echo "Your total cost is $".$total; 
         ?>
         <br>
+        <form method="post">
         <button class="button" value="Purchase" name="purchase" type="submit" >Purchase</button>
+        </form>
         <form action="index.php">
-            <button class="button" name="purchase" >Continue shopping</button>
+            <button class="button" name="index" >Continue shopping</button>
         </form>
         
     </div>
-    </form>
+    
     <?php
             if (isset($_POST[$row['id']])) {
                  $key = array_search($row['id'], $_SESSION['cart']);
