@@ -158,7 +158,7 @@
                                         
             
                                         <a>     Number: </a><input type="number" step="1" value="1" min="1"  max=<?php echo $row['Stock'];?> name=<?php echo $row['id']."no";?>>
-                                        <input type='submit' name=<?php echo $row['id'];?> value= "Buy me!">
+                                        <input type='submit' class="buy_button" name=<?php echo $row['id'];?> value= "Buy me!">
                                         </form>
                                         <?php }else{ ?>
                                         <p>Out of stock.</p>

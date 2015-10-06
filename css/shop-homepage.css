@@ -49,8 +49,15 @@ body {
     color: #333;
 }
 .buy_button{
-    color:#33B5E5;
+    color: #333;
     background-color: #33B5E5;
+    overflow: visible;
+
+}
+.buy_button:hover{
+  color: #000;
+  text-decoration: none;
+  background-color: #33B5E5;
 }
 
 footer {
