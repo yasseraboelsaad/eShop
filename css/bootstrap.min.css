@@ -5145,7 +5145,7 @@ a.thumbnail.active {
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #fff;
+  background-color: #0099CC;
   border: 1px solid #ddd;
 }
 .list-group-item:first-child {
@@ -5165,9 +5165,9 @@ a.list-group-item .list-group-item-heading {
 }
 a.list-group-item:hover,
 a.list-group-item:focus {
-  color: #555;
+  color: #000;
   text-decoration: none;
-  background-color: #f5f5f5;
+  background-color: #33B5E5;
 }
 .list-group-item.disabled,
 .list-group-item.disabled:hover,

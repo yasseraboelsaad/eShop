@@ -48,6 +48,10 @@ body {
     padding: 9px;
     color: #333;
 }
+.buy_button{
+    color:#33B5E5;
+    background-color: #33B5E5;
+}
 
 footer {
     margin: 50px 0;
