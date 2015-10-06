@@ -149,7 +149,6 @@
       </div>
   </div>
 </div>
-<hr>
             <?php
                 if (isset($_POST['save'])) {
                   if ($password==$cpassword) {
@@ -171,6 +170,7 @@
         </div>
 
     </div>
+
     <!-- /.container -->
 
     <div class="container">

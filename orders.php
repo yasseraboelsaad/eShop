@@ -13,6 +13,7 @@
     <meta name="author" content="">
 
     <title>eShop</title>
+    <link rel="stylesheet" type="text/css" href="css/cart.css">
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,6 +33,7 @@
 <body>
 
     <!-- Navigation -->
+
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,6 +59,11 @@
                         <a href="signup.php">Sign up</a>
                     </li>
                     <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "orders.php" >Orders</a>
+                    </li>
+                    <?php } ?>
                     <?php 
                         if(isset($_SESSION['user'])){
                             mysql_connect('localhost','root','');
@@ -68,11 +75,6 @@
                         <a href="profile.php"> 
                             <?php echo $row['Fname']." ".$row['Lname']; ?>
                         </a>
-                    </li>
-                    <?php } ?>
-                    <?php if(isset($_SESSION['user'])){ ?>
-                    <li>
-                        <a href= "cart.php" >Cart</a>
                     </li>
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
@@ -90,39 +92,11 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-3">
-                <div class="list-group">
 
-                </div>
-            </div>
             <div class="col-md-9">
 
                 
                 <div class="row">
-                <?php
-                        mysql_connect('localhost','root','');
-                        mysql_select_db('eshop');
-                        $query = "SELECT * FROM Orders where User ='karim@gmail.com'";
-                        $result = mysql_query($query);
-                        while($row = mysql_fetch_assoc($result))
-                        {?>
-                            <?php
-                                $sql = "SELECT * FROM Product where id = {$row['Product']}";
-                                $prod = mysql_query($sql);
-                            ?>
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <div class="caption">
-                                        <h4 ><?php echo $prod['Name']; ?></h4>
-                                        <h4><a href="#"><?php echo $prod['Price']; ?></a>
-                                        </h4>
-                                        <p><?php echo $row['Amount']; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php
-                        }
-                        ?>
                 </div>
 
             </div>
@@ -130,6 +104,11 @@
         </div>
 
     </div>
+    <div class="checkout">
+  <h1>Order History</h1>
+  <p>Your order History Include:</p>
+  <p><img class="item" title="Image of Cover" src="http://i.imgur.com/bqvpFUM.jpg" />My Neighbour Totoro for £22.99</p>
+</div>
     <!-- /.container -->
 
     <div class="container">

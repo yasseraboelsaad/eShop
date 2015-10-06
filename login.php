@@ -15,7 +15,7 @@
 		<div id="topbar">
 			<table style="width:100%">
 				<tr>
-			    	<td><img src="images/shoppingcart.png" width = "50" height = "40"> eShop</td>
+			    	<td><img src="images/shoppingcart.png" width = "50" height = "40"> <a href="index.php">eShop</a></td>
 			   	</tr>
 			</table>
 		</div>
