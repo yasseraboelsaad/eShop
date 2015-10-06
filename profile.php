@@ -69,57 +69,59 @@
       <!-- left column -->
       <div class="col-md-3">
         <div class="text-center">
-          <img src="images/avatar.png" class="avatar img-circle" alt="avatar">
+        <?php 
+          mysql_connect('localhost','root','');
+          mysql_select_db('eshop');
+          $sql = mysql_query("SELECT * from Users WHERE Email ='{$_SESSION['user']}'");
+          $row=mysql_fetch_array($sql)
+        ?>
+          <img src=<?php echo $row['Avatar'];?> class="avatar img-circle" alt="avatar">
           <h6>Upload a different photo...</h6>
-          
-          <input type="file" class="form-control">
+          <form method="post">
+          <input type="file" name="Avatar" class="form-control">
+          </form>
         </div>
       </div>
       
       <!-- edit form column -->
       <div class="col-md-9 personal-info">
-        <div class="alert alert-info alert-dismissable">
-          <a class="panel-close close" data-dismiss="alert">×</a> 
-          <i class="fa fa-coffee"></i>
-          This is an <strong>.alert</strong>. Use this to show important messages to the user.
-        </div>
         <h3>Personal info</h3>
         
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" method="post">
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="Jane">
+              <input class="form-control" type="text" name="fname" value=<?php echo $row['Fname'];?>>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="Bishop">
+              <input class="form-control" type="text" name="lname" value=<?php echo $row['Lname'];?>>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
-              <input class="form-control" type="text" value="janesemail@gmail.com">
+              <input class="form-control" type="text" name="email" value=<?php echo $row['Email'];?>>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" type="password" name="Password" value=<?php echo $row['Password'];?>>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label">Confirm password:</label>
             <div class="col-md-8">
-              <input class="form-control" type="password" value="11111122333">
+              <input class="form-control" type="password" name="CPassword" value=<?php echo $row['Password'];?>>
             </div>
           </div>
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-              <input type="button" class="btn btn-primary" value="Save Changes">
+              <input type="submit" class="btn btn-primary" name="save" value="Save Changes">
               <span></span>
               <input type="reset" class="btn btn-default" value="Cancel">
             </div>
@@ -130,17 +132,15 @@
 </div>
 <hr>
             <?php
-                $fname=$_POST['fname'];
-                $lname=$_POST['lname'];
-                $email=$_POST['email'];
-            ?>
-            <script type="text/javascript">
-                function fname(){   
-                    <?php
-                        $sql=mysql_query("UPDATE Users SET Fname='$fname' WHERE Email='mudda@gmail.com'");
-                    ?>
+                if (isset($_POST['save'])) {
+                  if ($password==$cpassword) {
+                    $sql = mysql_query("UPDATE Users SET Fname = '{$_POST['fname']}', Lname = '{$_POST['lname']}', Email='{$_POST['email']}', Password='{$_POST['Password']}',Avatar='{$_POST['Avatar']}' WHERE Email='{$_SESSION['user']}'");
+                    $_SESSION['user']=$_POST['email'];
+                  }else{
+                    echo "Passwords dont match";
+                  }
                 }
-            </script>
+            ?>
             <div class="col-md-9">
 
                 

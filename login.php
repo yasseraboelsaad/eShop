@@ -28,6 +28,7 @@
 								<div class="submit">
 									<input type="submit" onclick="myFunction()" value="Login" name="submit">
 								</div>
+							</form>
 		<?php
 			if (isset($_POST['submit'])) {
 				$Email = $_POST['Email'];
