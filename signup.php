@@ -39,22 +39,29 @@
 				$Email = $_POST['Email'];
 				$Password = $_POST['Password'];
 				$CPassword = $_POST['CPassword'];
-				$Avatar = $_POST['picture'];
-				mysql_connect('localhost','root','');
-				mysql_select_db('eshop');
-				$checkUserID = mysql_query("SELECT Email from Users WHERE Email = '$Email'");
-				if ($Password == $CPassword) {
-					if ($checkUserID) {
-						$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '$Avatar')";
-						$result = mysql_query($SQL) or die(mysql_error());
-						$_SESSION["authenticated"] = true;
-						$_SESSION["user"] = $Email;
-						header('Location: index.php');
-					}else{
-						echo "This email already exists.";
-					}
+				if(isset($_POST['picture'])){
+					$Avatar = $_POST['picture'];
+				}
+				if ($Fname=="First Name" || $Lname=="Last Name" || $Email=="Email Address") {
+					echo "Please fill all required fields";
 				}else{
-					echo "Error passwords dont match.";
+					mysql_connect('localhost','root','');
+					mysql_select_db('eshop');
+					$checkUserID = mysql_query("SELECT Email from Users WHERE Email = '$Email'");
+
+					if ($Password == $CPassword) {
+						if (mysql_num_rows($checkUserID)==0) {
+							$SQL = "INSERT INTO Users (Fname, Lname, Email, Password, Avatar) VALUES ('$Fname', '$Lname', '$Email', '$Password', '$Avatar')";
+							$result = mysql_query($SQL) or die(mysql_error());
+							$_SESSION["authenticated"] = true;
+							$_SESSION["user"] = $Email;
+							header('Location: index.php');
+						}else{
+							echo "This email already exists.";
+						}
+					}else{
+						echo "Error passwords dont match.";
+					}
 				}
 			}
 		?>
