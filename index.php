@@ -78,7 +78,7 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "signout.php" >sign out</a>
+                        <a href= "signout.php" >Sign out</a>
                     </li>
                     <?php } ?>
                 </ul>
@@ -175,7 +175,7 @@
                                                     array_push($_SESSION['cart'],$row['id']);
                                                     echo "Added to cart!";
                                                 }else{
-                                                    echo "<script type='text/javascript'>alert('Please sign up or log');</script>";
+                                                    echo "<script type='text/javascript'>alert('Please sign up or login');</script>";
                                                 }
                                             }
                                         ?>

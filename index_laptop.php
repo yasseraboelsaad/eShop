@@ -78,7 +78,7 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "signout.php" >sign out</a>
+                        <a href= "signout.php" >Sign out</a>
                     </li>
                     <?php } ?>
                 </ul>
@@ -153,7 +153,7 @@
                                         <p><?php echo $row['Description']; ?></p>
                                         <?php 
                                             if($row['Stock']>0){?>
-                                        <form method="post" action="index.php">
+                                        <form method="post" action="index_laptop.php">
                                         
             
                                         <a>     Number: </a><input type="number" step="1" value="1" min="1"  max=<?php echo $row['Stock'];?> name=<?php echo $row['id']."no";?> onkeydown="return false">
@@ -174,7 +174,7 @@
                                                     array_push($_SESSION['cart'],$row['id']);
                                                     echo "Added to cart!";
                                                 }else{
-                                                    echo "<script type='text/javascript'>alert('Please sign up or log');</script>";
+                                                    echo "<script type='text/javascript'>alert('Please sign up or login');</script>";
                                                 }
                                             }
                                         ?>

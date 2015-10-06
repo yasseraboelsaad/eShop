@@ -81,7 +81,7 @@
                     <?php } ?>
                     <?php if(isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "signout.php" >sign out</a>
+                        <a href= "signout.php" >Sign out</a>
                     </li>
                     <?php } ?>
                 </ul>
