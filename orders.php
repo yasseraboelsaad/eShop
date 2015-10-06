@@ -112,11 +112,12 @@
         <?php
             $lastorder=0;
             $sql = mysql_query("SELECT * from Orders WHERE User ='{$_SESSION['user']}'");
-            while($row = mysql_fetch_assoc($sql)){
-            $result = mysql_query("SELECT * from Product WHERE id ='{$row['Product']}'");
-            $asd = mysql_fetch_assoc($result);
-            if ($lastorder==$row['Number']) {
-            ?>
+            if (mysql_num_rows($sql)!=0){ 
+                while($row = mysql_fetch_assoc($sql)){
+                $result = mysql_query("SELECT * from Product WHERE id ='{$row['Product']}'");
+                $asd = mysql_fetch_assoc($result);
+                if ($lastorder==$row['Number']) {
+        ?>
                 <img src=<?php echo $asd['Image'];?>>
                 <p> Product name: <?php echo $asd['Name']; ?> Price: <?php echo $asd['Name']; ?> Amount: <?php echo $row['Amount']; ?></p>
             <?php }else{ ?>
@@ -126,7 +127,10 @@
             <?php } ?>
         <?php 
              $lastorder=$row['Number'];
-         }
+                }
+            }else{
+                echo "You havent purchased anything yet!";
+            }
         ?>
 </div>
     <!-- /.container -->
