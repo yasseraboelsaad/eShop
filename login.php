@@ -43,6 +43,8 @@
 						echo "Login successful";
 						$_SESSION['authenticated'] = true;
 						$_SESSION["user"] = $Email;
+						$_SESSION['cart']= array();
+						$_SESSION['amount']= array();
 						echo "<script> window.location.assign('index.php'); </script>";
 
 					}else{

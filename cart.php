@@ -105,13 +105,29 @@
 
     </div>
     <div class="checkout">
-  <h1>Checkout</h1>
-  <p>You are about to buy:</p>
-  <p><img class="item" title="Image of Cover" src="http://i.imgur.com/bqvpFUM.jpg" />My Neighbour Totoro for £22.99</p>
-   <div class="button">
-    Continue
-  </div>
-</div>
+        <h1>Checkout</h1>
+        <p>You are about to buy:</p>
+        <?php
+            $amount=current($_SESSION['amount']);
+            foreach($_SESSION['cart'] as $id) {
+            $sql = mysql_query("SELECT * from Product WHERE id ='$id'");
+            $row = mysql_fetch_assoc($sql);
+            
+            ?>
+                <p><img class="item" title="Image of Cover" src= $row['Image'] /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
+                <form method="post">
+                <input name="remove" type="button" id="remove" value="Remove item" />
+                </form>
+        <?php 
+            if (isset($_POST['remove'])) {
+                echo "asd";
+            }
+            $amount=next($_SESSION['amount']); } 
+        ?>
+        <div class="button">
+            Continue
+        </div>
+    </div>
     <!-- /.container -->
 
     <div class="container">
