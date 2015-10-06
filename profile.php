@@ -47,12 +47,31 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <?php if(!isset($_SESSION['user'])){ ?>
                     <li>
-                        <a href= "signout.php">sign out</a>
+                        <a href="login.php">Login</a>
                     </li>
+                    <?php } ?>
+                    <?php if(!isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href="signup.php">Sign up</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "orders.php" >Orders</a>
+                    </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
                     <li>
                         <a href= "cart.php" >Cart</a>
                     </li>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user'])){ ?>
+                    <li>
+                        <a href= "signout.php" >sign out</a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
