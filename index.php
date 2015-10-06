@@ -1,7 +1,5 @@
 <?php
     session_start();
-    $_SESSION['cart'] = array();
-    $_SESSION['amount'] = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -177,7 +175,7 @@
                                             if (isset($_POST[$row['id']])) {
                                                 if (isset($_SESSION['authenticated'])) {
                                                     array_push($_SESSION['amount'],$_POST[$row['id']."no"]);
-                                                    array_push($_SESSION['cart'],$_POST[$row['id']]);
+                                                    array_push($_SESSION['cart'],$row['id']);
                                                     echo "Added to cart!";
                                                 }else{
                                                     echo "<script type='text/javascript'>alert('Please sign up or log');</script>";
