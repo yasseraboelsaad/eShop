@@ -107,7 +107,23 @@
     <div class="checkout">
   <h1>Order History</h1>
   <p>Your order History Include:</p>
-  <p><img class="item" title="Image of Cover" src="http://i.imgur.com/bqvpFUM.jpg" />My Neighbour Totoro for £22.99</p>
+        <?php
+            $lastorder=0;
+            $sql = mysql_query("SELECT * from Orders WHERE User ='{$_SESSION['user']}'");
+            while($row = mysql_fetch_assoc($sql)){
+            $result = mysql_query("SELECT * from Product WHERE id ='{$row['Product']}'");
+            $asd = mysql_fetch_assoc($result);
+            if ($lastorder==$row['Number']) {
+            ?>
+                <p> Product name: <?php echo $asd['Name']; ?> Price: <?php echo $asd['Name']; ?> Amount: <?php echo $row['Amount']; ?></p>
+            <?php }else{ ?>
+                <p>Order number: <?php echo $row['Number']; ?></p>
+                <p> Product name: <?php echo $asd['Name']; ?> Price: <?php echo $asd['Name']; ?> Amount: <?php echo $row['Amount']; ?></p>
+            <?php } ?>
+        <?php 
+             $lastorder=$row['Number'];
+         }
+        ?>
 </div>
     <!-- /.container -->
 
