@@ -118,7 +118,7 @@
             ?>
                 <p><img class="item" title="Image of Cover" src= <?php echo $row['Image']; ?> /><?php echo $amount; ?>  <?php echo $row['Name']; ?> for $<?php echo $row['Price']; ?></p>
                 <form method="post">
-                        <button class="button" href= "cart.php" value="Purchase" name=<?php echo $row['id']; ?> type="submit" >Remove</button>
+                        <button class="button" value="Purchase" name=<?php echo $row['id']; ?> type="submit" >Remove</button>
                  </form>
 
         <?php 
@@ -137,6 +137,9 @@
                  $key = array_search($row['id'], $_SESSION['cart']);
                  unset($_SESSION['cart'][$key]);
                  unset($_SESSION['amount'][$key]);
+                 echo "<script>
+                        window.location.href='cart.php';
+                    </script>";
              } 
             if (isset($_POST['purchase'])) {
                 $sql=mysql_query("SELECT MAX(Number) FROM Orders");
