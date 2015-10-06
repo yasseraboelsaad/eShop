@@ -87,6 +87,7 @@
             </div>
             <!-- /.navbar-collapse -->
         </div>
+        </nav>
     <!-- Page Content -->
     <div class="container">
 
