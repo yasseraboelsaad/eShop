@@ -108,8 +108,9 @@
   <h1>Checkout</h1>
   <p>You are about to buy:</p>
   <p><img class="item" title="Image of Cover" src="http://i.imgur.com/bqvpFUM.jpg" />My Neighbour Totoro for £22.99</p>
+   <p>The total cost of your purchases is:<p>   
    <div class="button">
-    Continue
+    Checkout
   </div>
 </div>
     <!-- /.container -->
